@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* shadcn 变量映射到纸墨色系 */
+    --background: 43 33% 95%;          /* paper #F7F4EE */
+    --foreground: 40 14% 10%;          /* ink #1E1B16 */
+    --card: 44 40% 97%;                /* warm-white #FDFCF9 */
+    --card-foreground: 40 14% 10%;
+    --popover: 44 40% 97%;
+    --popover-foreground: 40 14% 10%;
+    --primary: 8 63% 46%;              /* seal #C03F2B */
+    --primary-foreground: 44 40% 97%;
+    --secondary: 42 26% 91%;           /* paper-deep #EFEBE2 */
+    --secondary-foreground: 40 14% 10%;
+    --muted: 42 26% 91%;
+    --muted-foreground: 40 7% 51%;     /* ink-faint #8A8378 */
+    --accent: 42 26% 91%;
+    --accent-foreground: 40 14% 10%;
+    --destructive: 8 63% 46%;
+    --destructive-foreground: 44 40% 97%;
+    --border: 40 26% 87%;              /* cinnabar-line #E8E1D3 */
+    --input: 40 26% 87%;
+    --ring: 8 63% 46%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    font-size: 16px;
+  }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    font-feature-settings: "palt";
+  }
+  ::selection {
+    background: rgba(192, 63, 43, 0.18);
+  }
+}
+
+@layer utilities {
+  /* 宣纸纤维噪点纹理（极淡，opacity 由背景图自身控制） */
+  .paper-noise {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.12 0 0 0 0 0.10 0 0 0 0 0.08 0 0 0 0.03 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  /* 等宽表格数字：金额/号码 */
+  .num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+  /* 手绘感墨线下划线 */
+  .ink-underline {
+    background-image: linear-gradient(to right, #C03F2B 0%, #9E2F1F 60%, #C03F2B 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 0.09em;
+    background-position: 0 96%;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  /* 印章徽章基础（四态见 SealBadge.tsx） */
+  .seal-badge {
+    @apply inline-flex items-center justify-center rounded-[4px] border-[1.5px] px-2 py-0.5 text-[12px] font-semibold leading-[18px] tracking-wide;
+    transform: rotate(-3deg);
+  }
+  /* 数据表格共享样式 */
+  .data-table {
+    @apply w-full border-collapse text-[14px] leading-[22px];
+  }
+  .data-table thead th {
+    @apply text-[12px] font-medium tracking-[0.04em] text-ink-faint text-left px-4 py-3 border-b border-cinnabar-line bg-paper-deep/60;
+  }
+  .data-table tbody td {
+    @apply px-4 h-12 border-b border-cinnabar-line/70 align-middle;
+  }
+  .data-table tbody tr:nth-child(even) {
+    background-color: rgba(239, 235, 226, 0.5);
+  }
+  .data-table tbody tr:hover {
+    background-color: #EFEBE2;
+  }
+  .data-table td.num, .data-table th.num {
+    @apply text-right;
+  }
+  /* 上传区拖入态 */
+  .dropzone {
+    @apply rounded-2xl border-2 border-dashed border-cinnabar-line transition-colors duration-200;
+  }
+  .dropzone[data-drag='true'] {
+    border-color: #C03F2B;
+    background-color: rgba(192, 63, 43, 0.04);
+  }
+}
