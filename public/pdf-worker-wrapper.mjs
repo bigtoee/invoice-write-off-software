@@ -14,4 +14,4 @@
  *    空窗内派发的消息没有监听者会被丢弃，文本提取静默失败 —— 已实测踩坑。）
  */
 import './pdf-worker-polyfills.mjs';
-import '/assets/pdf.worker.min.mjs';
+import './assets/pdf.worker.min.mjs';

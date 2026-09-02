@@ -7,7 +7,7 @@ import pdfWorkerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 // 开发服务器没有 /assets/ 构建产物路径、Node/测试环境无此问题，均保留原始 worker 路径。
 pdfjsLib.GlobalWorkerOptions.workerSrc =
   typeof window !== 'undefined' && typeof document !== 'undefined' && import.meta.env.PROD
-    ? '/pdf-worker-wrapper.mjs'
+    ? `${import.meta.env.BASE_URL}pdf-worker-wrapper.mjs`
     : pdfWorkerUrl;
 
 /**
@@ -18,10 +18,10 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
  * 四份资源随站点分发在 public/ 下，测试环境可通过 setPdfjsAssets 覆盖为本地路径。
  */
 const assets = {
-  cMapUrl: '/cmaps/',
-  standardFontDataUrl: '/standard_fonts/',
-  wasmUrl: '/wasm/',
-  iccUrl: '/iccs/',
+  cMapUrl: `${import.meta.env.BASE_URL}cmaps/`,
+  standardFontDataUrl: `${import.meta.env.BASE_URL}standard_fonts/`,
+  wasmUrl: `${import.meta.env.BASE_URL}wasm/`,
+  iccUrl: `${import.meta.env.BASE_URL}iccs/`,
 };
 
 export function setPdfjsAssets(next: Partial<typeof assets>): void {

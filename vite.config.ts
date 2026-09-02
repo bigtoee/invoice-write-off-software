@@ -8,7 +8,7 @@ import { inspectAttr } from 'plugin-inspect-react-code'
 const withSelftest = process.env.BUILD_SELFTEST === '1';
 
 export default defineConfig(({ command }) => ({
-  base: './',
+  base: command === 'build' ? '/invoice-write-off-software/' : './',
   plugins: [command !== 'build' && inspectAttr(), react()].filter(Boolean),
   build: {
     outDir: withSelftest ? 'dist-test' : 'dist',
