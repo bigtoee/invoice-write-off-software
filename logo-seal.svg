@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="2" seed="7" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.6"/>
+    </filter>
+    <filter id="aging">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="11" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.9 0.9 0 0 0" result="a"/>
+      <feComposite in="SourceGraphic" in2="a" operator="out"/>
+    </filter>
+  </defs>
+  <g filter="url(#rough)">
+    <rect x="5" y="5" width="54" height="54" rx="4" fill="#C03F2B" filter="url(#aging)"/>
+  </g>
+  <rect x="10.5" y="10.5" width="43" height="43" rx="2" fill="none" stroke="#F7F4EE" stroke-width="2.2" opacity="0.92" filter="url(#rough)"/>
+  <!-- 篆体风格「核」字：木 + 亥，线条化白文 -->
+  <g stroke="#F7F4EE" stroke-width="2.6" stroke-linecap="round" fill="none" filter="url(#rough)" opacity="0.96">
+    <!-- 木字旁 -->
+    <path d="M17 20 V44"/>
+    <path d="M12.5 25.5 H21.5"/>
+    <path d="M17 27 C15 31 13.5 33.5 12 35.5"/>
+    <path d="M17 27 C18.5 30 20 32 21.5 33.5"/>
+    <!-- 亥：点横 -->
+    <path d="M31.5 17.5 L33 20"/>
+    <path d="M26 24 H46"/>
+    <!-- 亥：撇折撇 -->
+    <path d="M38 24 C36 27 33 29.5 29 31"/>
+    <path d="M31 32 C34 31 37 30.5 40 30"/>
+    <path d="M40 30 C37.5 33.5 33.5 36.5 28 38.5"/>
+    <!-- 亥：下部 -->
+    <path d="M33 39.5 C35.5 38.5 38.5 38 41 38"/>
+    <path d="M41 38 C39.5 41 37 43.5 33.5 45.5"/>
+    <path d="M44 42.5 L46.5 45"/>
+  </g>
+</svg>
